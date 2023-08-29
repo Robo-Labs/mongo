@@ -797,7 +797,7 @@ type Flatten<T> = T extends Array<infer Item> ? Item : T;
 type IsAny<T, Y, N> = 0 extends (1 & T) ? Y : N;
 
 export type InsertDocument<TDocument extends Document> =
-  Extract<TDocument["_id"], ObjectId> extends ObjectId
+  TDocument["_id"] extends ObjectId
     ? Omit<TDocument, "_id"> & { _id?: TDocument["_id"] }
     // deno-lint-ignore ban-types
     : TDocument["_id"] extends {} ? TDocument
